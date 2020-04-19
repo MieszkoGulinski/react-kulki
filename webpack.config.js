@@ -13,8 +13,8 @@ module.exports = {
         }
       },
       {
-        test: /\.(sass|scss|css)$/,
-        loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader']),
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract(['css-loader']),
       },
     ],
   },
