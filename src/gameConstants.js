@@ -9,7 +9,10 @@ export const ballColors = [
   '#aaaa00',
   '#aa00aa',
   '#00aaaa',
-  '#111111',
   '#555555',
-  '#aaaaaa'
+  '#999999',
+  '#cccccc'
 ];
+
+export const newBallsOnGameStart = 5;
+export const newBallsAfterMove = 3;

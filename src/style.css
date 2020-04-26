@@ -45,10 +45,6 @@ html, body {
   border-bottom: 1px solid #aaa;
 }
 
-.game-cell.active {
-  background: #ffff33;
-}
-
 .ball {
   position: absolute;
   padding: 4px;
@@ -58,6 +54,12 @@ html, body {
     padding: 10px;
   }
 }
+
+.ball.active {
+  /* temporary, will become an animation */
+  opacity: 0.5;
+}
+
 .ball-marker {
   height: 100%;
   width: 100%;

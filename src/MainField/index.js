@@ -1,28 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Cell from './Cell';
+import FieldRow from './FieldRow';
 import Ball from './Ball';
-import { fieldHeight, fieldWidth } from '../gameConstants';
+import { fieldHeight } from '../gameConstants';
 
 const mapStateToProps = (state) => {
   return {
     ballState: state.ballState
   };
-};
-
-const FieldRow = (props) => {
-  let cellElems = [];
-  for (let counter=0; counter < fieldWidth; counter++) {
-    cellElems.push(
-      <Cell key={counter} index={counter + props.index * fieldWidth} />
-    );
-  }
-
-  return (
-    <div className="game-field-row">
-      {cellElems}
-    </div>
-  );
 };
 
 const MainField = (props) => {

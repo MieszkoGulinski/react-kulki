@@ -6,3 +6,10 @@ export function newGame(maxColors) {
     maxColors
   };
 }
+
+export function handleCellClick(cellIndex) {
+  return {
+    type: actionTypes.HANDLE_CELL_CLICK,
+    cellIndex
+  };
+}
