@@ -41,7 +41,6 @@ const createSpanningTree = (cellState, startCell) => {
 const createPath = (cellState, startCell, endCell) => {
   // backtrack from endCell to startCell
   const pathTree = createSpanningTree(cellState, startCell);
-  console.log('createSpanningTree', pathTree)
   let path = [endCell];
 
   let stepEnd = endCell;
@@ -54,6 +53,7 @@ const createPath = (cellState, startCell, endCell) => {
     stepEnd = stepStart;
   }
 
+  path.pop(); // remove start cell from the path
   path.reverse();
 
   return path;

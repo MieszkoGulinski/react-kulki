@@ -10,7 +10,7 @@ import createPath from '../gameCalculations/createPath';
 // color - ball color
 
 // Pending movements: for animations. Array of pending single-step movements in format:
-// {ball: 3, dest: 5}
+// {id: 3, dest: 5}
 // If there are pending movements, starting a move is disabled.
 
 const initState = {
@@ -54,13 +54,39 @@ const reducer = (state = initState, action) => {
       // click on a target cell
       const cellState = convertToCellState(state);
       const path = createPath(cellState, state.selectedCell, action.cellIndex);
+      if (path === null) return state;
 
-      // later - perform the actual path transition
-      console.log(path);
+      const selectedBall = state.ballState.find(ball => ball.cell === state.selectedCell);
+      const pendingMovements = path.map(cell => ({id: selectedBall.id, dest: cell}));
+
+      return {
+        ...state,
+        pendingMovements,
+        selectedCell: null
+      };
     }
+  }
 
+  case actionTypes.PERFORM_MOVE: {
+    // Performs a move from the pending movement queue
+    if (state.pendingMovements.length === 0) return state;
+
+    const movement = state.pendingMovements[0];
+
+    const newBallState = [...state.ballState];
+    const newPendingMovements = [...state.pendingMovements];
+    const movedBallIndex = newBallState.findIndex(ball => ball.id === movement.id);
+
+    newBallState[movedBallIndex] = {
+      ...newBallState[movedBallIndex],
+      cell: movement.dest
+    };
+
+    newPendingMovements.splice(0, 1);
     return {
       ...state,
+      ballState: newBallState,
+      pendingMovements: newPendingMovements,
     };
   }
 

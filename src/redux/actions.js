@@ -13,3 +13,9 @@ export function handleCellClick(cellIndex) {
     cellIndex
   };
 }
+
+export function performMove() {
+  return {
+    type: actionTypes.PERFORM_MOVE,
+  };
+}

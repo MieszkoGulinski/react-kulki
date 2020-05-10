@@ -6,7 +6,7 @@ import {fieldWidth, fieldHeight} from '../gameConstants';
 
 const getNeighboringCellIndices = index => {
   const x = index % fieldWidth;
-  const y = index - (x * fieldWidth);
+  const y = Math.floor(index / fieldWidth);
 
   let result = [];
 

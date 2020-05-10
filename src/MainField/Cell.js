@@ -15,7 +15,6 @@ const Cell = (props) => {
 
   return (
     <div className="game-cell" onClick={handleClick}>
-        {props.index}
     </div>
   );
 };
