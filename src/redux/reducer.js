@@ -3,6 +3,9 @@ import { getFreeCellIndices, convertToCellState } from './selectors';
 import { newBallsOnGameStart } from '../gameConstants';
 import actionTypes from './actionTypes';
 import createPath from '../gameCalculations/createPath';
+import findSeriesToRemove from '../gameCalculations/findSeriesToRemove';
+import addNewBalls from '../gameCalculations/addNewBalls';
+import removeBallSeriesAndCalculateScore from '../gameCalculations/removeBallSeriesAndCalculateScore';
 
 // Ball state: array of objects in format:
 // {id: 0, color: 4, cell: 4}
@@ -73,7 +76,7 @@ const reducer = (state = initState, action) => {
 
     const movement = state.pendingMovements[0];
 
-    const newBallState = [...state.ballState];
+    let newBallState = [...state.ballState];
     const newPendingMovements = [...state.pendingMovements];
     const movedBallIndex = newBallState.findIndex(ball => ball.id === movement.id);
 
@@ -83,10 +86,30 @@ const reducer = (state = initState, action) => {
     };
 
     newPendingMovements.splice(0, 1);
+
+    let score = state.score;
+
+    if (newPendingMovements.length === 0) {
+      let seriesToRemove = findSeriesToRemove(newBallState);
+
+      if (seriesToRemove.length === 0) {
+        newBallState = addNewBalls(newBallState, state.maxColors);
+        seriesToRemove = findSeriesToRemove(newBallState);
+        // ^ check again - adding new balls can cause some series to become long enough to disappear
+      }
+
+      if (seriesToRemove.length > 0) {
+        const [ballStateRemoved, scoreIncrease] = removeBallSeriesAndCalculateScore(newBallState, seriesToRemove);
+        newBallState = ballStateRemoved;
+        score += scoreIncrease;
+      }
+    }
+
     return {
       ...state,
       ballState: newBallState,
       pendingMovements: newPendingMovements,
+      score
     };
   }
 

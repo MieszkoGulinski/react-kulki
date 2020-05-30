@@ -17,4 +17,6 @@ export const ballColors = [
 export const newBallsOnGameStart = 5;
 export const newBallsAfterMove = 3;
 
+export const minSeriesLength = 5;
+
 export const singleMovementTimeMs = 200;
