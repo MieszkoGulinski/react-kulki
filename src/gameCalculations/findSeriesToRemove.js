@@ -48,9 +48,35 @@ const findSeriesToRemove = (ballState) => {
     result = [...result, ...convertToRunLength(cellState, columnCells, minSeriesLength)];
   }
 
-  // TODO diagonals
   // check diagonal left/top to right/bottom
+  for (let startColIndex = -fieldHeight; startColIndex < fieldWidth; startColIndex++) {
+    let columnCells = [];
+
+    for (let rowIndex = 0; rowIndex < fieldHeight; rowIndex++) {
+      const colIndex = startColIndex + rowIndex;
+      if (colIndex >= 0 && colIndex < fieldWidth) {
+        const cellIndex = rowIndex * fieldWidth + colIndex;
+        columnCells.push(cellIndex);
+      }
+    }
+
+    result = [...result, ...convertToRunLength(cellState, columnCells, minSeriesLength)];
+  }
+
   // check diagonal right/top to left/bottom
+  for (let startColIndex = fieldWidth + fieldHeight - 1; startColIndex >= 0; startColIndex--) {
+    let columnCells = [];
+
+    for (let rowIndex = 0; rowIndex < fieldHeight; rowIndex++) {
+      const colIndex = startColIndex - rowIndex;
+      if (colIndex >= 0 && colIndex < fieldWidth) {
+        const cellIndex = rowIndex * fieldWidth + colIndex;
+        columnCells.push(cellIndex);
+      }
+    }
+
+    result = [...result, ...convertToRunLength(cellState, columnCells, minSeriesLength)];
+  }
   return result;
 };
 
