@@ -7,7 +7,7 @@ import calculateScore from './calculateScore';
 
 const removeBallSeriesAndCalculateScore = (ballState, seriesToRemove, maxColors) => {
   const cellsToRemove = seriesToRemove.reduce((counter, series) => [...counter, ...series], []);
-  const score = seriesToRemove.reduce((counter, series) => counter + calculateScore(series.length, maxColors));
+  const score = seriesToRemove.reduce((counter, series) => counter + calculateScore(series.length, maxColors), 0);
 
   const newBallState = ballState.filter(ball => !cellsToRemove.includes(ball.cell));
   return [newBallState, score];

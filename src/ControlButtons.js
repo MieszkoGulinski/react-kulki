@@ -8,7 +8,8 @@ const fieldSize = 81;
 const mapStateToProps = (state) => {
   const ballsOnBoard = state.ballState.length;
   return {
-    gameStarted: ballsOnBoard > 0 && ballsOnBoard < fieldSize
+    gameStarted: ballsOnBoard > 0 && ballsOnBoard < fieldSize,
+    score: state.score
   };
 };
 
@@ -19,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const ControlButtons = (props) => {
-  const { gameStarted } = props;
+  const { gameStarted, score } = props;
   const [maxColors, setMaxColors] = React.useState(7);
 
   const handleChange = React.useCallback((ev) => {
@@ -47,6 +48,7 @@ const ControlButtons = (props) => {
       Colors:
       {maxColorOptionElems}
       <button onClick={handleClickNewGame}>New game</button>
+      {' '}Score: {score}
     </div>
   );
 };
