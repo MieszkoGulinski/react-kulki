@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { newGame } from './redux/actions';
+import InfoLinks from './InfoLinks';
 
 const possibleMaxColorValues = [5, 7, 9];
 const fieldSize = 81;
@@ -29,7 +30,7 @@ const ControlButtons = (props) => {
 
   const handleClickNewGame = React.useCallback(() => {
     if (gameStarted) {
-      // ask "do you want to start a new game"
+      // TODO: ask "do you want to start a new game"
     }
     props.newGame(maxColors);
   }, [maxColors, gameStarted]);
@@ -45,10 +46,17 @@ const ControlButtons = (props) => {
 
   return (
     <div className='control-buttons'>
-      Colors:
-      {maxColorOptionElems}
-      <button onClick={handleClickNewGame}>New game</button>
-      {' '}Score: {score}
+      <div>
+        <strong>Score: {score}</strong>
+      </div>
+      <div>
+        <button onClick={handleClickNewGame}>New game</button>
+      </div>
+      <div>
+        <span className="max-color-desc-text">Colors:</span>
+        {maxColorOptionElems}
+      </div>
+      <InfoLinks />
     </div>
   );
 };

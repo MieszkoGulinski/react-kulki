@@ -15,8 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
         <div className="outer-wrapper">
           <MainField />
           <ControlButtons />
-          <a href="how-to-play">How to play</a>
-          <a href="how-it-works">How it works</a>
         </div>
       </Provider>
     ),

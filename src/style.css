@@ -2,8 +2,26 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
 * {
   box-sizing: border-box;
+}
+
+.outer-wrapper {
+  padding: 15px 15px;
+}
+
+@media (min-width: 768px) {
+  .outer-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .outer-wrapper .game-field-wrapper {
+    flex-grow: 1;
+    margin: 0 0;
+  }
 }
 
 .game-field-wrapper {
@@ -11,6 +29,7 @@ html, body {
   max-width: 720px;
   margin: 0 auto;
 }
+
 .game-field-outer {
   width: 100%;
 
@@ -49,6 +68,7 @@ html, body {
   position: absolute;
   padding: 4px;
 }
+
 @media (min-width: 480px) {
   .ball {
     padding: 10px;
@@ -70,14 +90,56 @@ html, body {
   align-items: center;
 }
 
+
 .control-buttons {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: space-between;
+  padding-top: 15px;
+}
+
+.control-buttons > div {
+  width: 100%;
+  padding-bottom: 5px;
+}
+
+@media (min-width: 560px) {
+  .control-buttons > div {
+    width: auto;
+    padding-bottom: 0px;
+  }
+}
+
+@media (min-width: 768px) {
+  .control-buttons {
+    padding-top: 0px;
+    padding-left: 15px;
+    flex-direction: column;
+  }
+
+  .control-buttons > div  {
+    padding-bottom: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .max-color-desc-text {
+    display: block;
+  }
 }
 
 .max-color-option {
   display: inline-block;
-  padding: 0 5px;
+  padding: 0 2px;
 }
 .max-color-label {
   display: inline-block;
-  padding: 0 5px;
+  padding-left: 3px;
+}
+
+@media (min-width: 768px) {
+  .info-links a {
+    display: block;
+  }
 }
