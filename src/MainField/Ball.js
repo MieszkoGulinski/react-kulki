@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fieldHeight, fieldWidth, ballColors } from '../gameConstants';
+import { fieldHeight, fieldWidth, ballStylesByColor } from '../gameConstants';
 import { handleCellClick } from '../redux/actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -28,9 +28,8 @@ const Ball = (props) => {
     left: `${widthPercent * col}%`,
     top: `${heightPercent * row}%`
   };
-  const innerStyle = {
-    background: ballColors[props.color - 1]
-  };
+
+  const innerStyle = ballStylesByColor[props.color - 1];
 
   const handleClick = React.useCallback(() => {
     props.handleCellClick(props.cell);

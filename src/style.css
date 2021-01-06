@@ -91,6 +91,11 @@ html, body {
 
   font-size: 18px;
 }
+@media (min-width: 560px) {
+  .ball-marker {
+    font-size: 22px;
+  }
+}
 
 
 .control-buttons {
