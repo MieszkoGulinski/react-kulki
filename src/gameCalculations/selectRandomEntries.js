@@ -6,7 +6,7 @@ const selectRandomEntries = (inputArray, count) => {
   let result = [];
   let inputReduced = [...inputArray];
 
-  for(let i=0; i<count; i++) {
+  for (let i=0; i<count; i++) {
     if (inputReduced.length > 0) {
       const index = Math.floor(Math.random() * inputReduced.length);
 

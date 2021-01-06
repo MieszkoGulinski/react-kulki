@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import FieldRow from './FieldRow';
 import Ball from './Ball';
 import { fieldHeight, singleMovementTimeMs } from '../gameConstants';
-import {performMove} from '../redux/actions';
+import { performMove } from '../redux/actions';
 
 const mapStateToProps = (state) => {
   return {

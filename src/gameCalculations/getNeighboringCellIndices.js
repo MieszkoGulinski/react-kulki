@@ -1,4 +1,4 @@
-import {fieldWidth, fieldHeight} from '../gameConstants';
+import { fieldWidth, fieldHeight } from '../gameConstants';
 
 // Returns neighboring cell indices.
 // Allowed directions: up, down, left, right
