@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import {fieldSize} from '../gameConstants';
+import { fieldSize } from '../gameConstants';
 
 // Base selectors
 const selectBallState = state => state.ballState;
@@ -58,4 +58,12 @@ export const getLargestBallIdUncached = (ballState) => {
 export const getLargestBallId = createSelector(
   selectBallState,
   getLargestBallIdUncached
+);
+
+export const isGameInProgress = createSelector(
+  selectBallState,
+  (ballState) => {
+    const ballsOnBoard = ballState.length;
+    return ballsOnBoard > 0 && ballsOnBoard < fieldSize;
+  }
 );

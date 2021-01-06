@@ -1,15 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { newGame } from './redux/actions';
+import { isGameInProgress } from './redux/selectors';
 import InfoLinks from './InfoLinks';
 
 const possibleMaxColorValues = [5, 7, 9];
-const fieldSize = 81;
 
 const mapStateToProps = (state) => {
-  const ballsOnBoard = state.ballState.length;
   return {
-    gameStarted: ballsOnBoard > 0 && ballsOnBoard < fieldSize,
+    gameStarted: isGameInProgress(state),
     score: state.score
   };
 };
@@ -30,8 +29,10 @@ const ControlButtons = (props) => {
 
   const handleClickNewGame = React.useCallback(() => {
     if (gameStarted) {
-      // TODO: ask "do you want to start a new game"
+      const isConfirmed = window.confirm("Do you want to start a new game?");
+      if (!isConfirmed) return;
     }
+
     props.newGame(maxColors);
   }, [maxColors, gameStarted]);
 
